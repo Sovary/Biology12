@@ -9,6 +9,8 @@ $route['translate_uri_dashes'] = FALSE;
 $route["show.php"] = "ExerciseOld/getExerciseById_Controller";
 $route["index.php"] = "ExerciseOld/index";
 
+$route["api/v1/checkupdate"] = 'api/AppInfo/getVersion_APIController';
+
 //1.4.18.1
 $route["api/v1/forsearch"] = 'api/DataForSearch/getDataForSearch_APIController';
 $route["api/v1/filter"] = 'api/exercise/getExercisesByFilter_APIController';
