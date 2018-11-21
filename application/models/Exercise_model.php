@@ -140,7 +140,7 @@ class Exercise_model extends CI_Model
             }
             if(!$this->IsNullOrEmptyString($param['txt']))
             {
-                $this->db->like('question',$param['txt']);
+                $this->db->or_like('question',$param['txt']);
                 $this->db->or_like('answer',$param['txt']);
             }
             
