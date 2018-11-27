@@ -142,6 +142,7 @@ class Exercise_model extends CI_Model
             {
                 $this->db->or_like('question',$param['txt']);
                 $this->db->or_like('answer',$param['txt']);
+                $this->db->or_like('tags',$param['txt']);
             }
             
             $this->db->limit($limit,$offset);
@@ -168,8 +169,9 @@ class Exercise_model extends CI_Model
             }
             if(!$this->IsNullOrEmptyString($param['txt']))
             {
-                $this->db->like('question',$param['txt']);
+                $this->db->or_like('question',$param['txt']);
                 $this->db->or_like('answer',$param['txt']);
+                $this->db->or_like('tags',$param['txt']);
             }
             $total = $this->db->count_all_results($this->table);
         }catch(Exception $e){}

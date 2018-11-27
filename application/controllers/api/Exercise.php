@@ -30,8 +30,11 @@ class Exercise extends CI_Controller
 	public function getExerciseById_APIController()
 	{
 		$param=["id"=>$this->uri->segment(4,0)];
-		$rs = $this->exercise_model->getExerciseById_API($param);
-		$this->load->view("question.php",["question"=>$rs["question"],"answer"=>$rs["answer"]]);
+		$rs = $this->exercise_model->getExerciseById_API($param);;
+		if(count($rs) >0)
+		{
+			$this->load->view("question.php",["question"=>$rs["question"],"answer"=>$rs["answer"],"tags"=>$rs["tags"]]);
+		}
 	}
 
 	public function getExercisesByCategoryId_APIController()
@@ -47,9 +50,9 @@ class Exercise extends CI_Controller
 	{
 		$param = array(
 			"page"=>$this->input->get("page"),
-			'txt'=>$this->input->get("text"),
-			'level'=>$this->input->get("level"),
-			'cate'=>$this->input->get("cate"),
+			'txt'=>trim($this->input->get("text")),
+			'level'=>trim($this->input->get("level")),
+			'cate'=>trim($this->input->get("cate")),
 		);		
 		echo json_encode($this->exercise_model->getExcerciesByFilter_API($param));
 	}
